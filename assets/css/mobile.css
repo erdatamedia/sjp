@@ -1,0 +1,107 @@
+/* =========================================================
+   Mobile layout — role pekerja: Cutting, Printing, Finishing, Kabag Gudang
+   Layout diaktifkan via PHP variabel $is_mobile dari MY_Controller
+   ========================================================= */
+
+/* ── Timestamp badge (Sprint 3C) ─────────────────────────────────────────── */
+.timestamp-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 2px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.timestamp-done    { background: #d4edda; color: #155724; }
+.timestamp-shipped { background: #cce5ff; color: #004085; }
+
+/* ── Kapasitas progress bar (Sprint 3B) ──────────────────────────────────── */
+#kapasitas-info {
+  font-size: 0.88rem;
+}
+#kap-bar {
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* ── SPK card list (pengganti tabel DataTable di mobile) ── */
+.spk-card-list {
+  padding: 8px;
+}
+
+.spk-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.spk-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #181c32;
+}
+
+.spk-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.spk-card-date {
+  font-size: 0.82rem;
+  color: #7e8299;
+}
+
+.spk-card-action .btn-block {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* ── Layout class helpers ── */
+.layout-mobile .dataTables_wrapper,
+.layout-mobile table.dataTable {
+  /* Sembunyikan tabel DataTable untuk role mobile; tampilkan card list */
+  display: none !important;
+}
+
+.layout-mobile .spk-card-list {
+  display: block;
+}
+
+.layout-desktop .spk-card-list {
+  display: none;
+}
+
+/* ── Responsive override untuk tablet & HP ── */
+@media (max-width: 768px) {
+  .layout-desktop table.dataTable {
+    font-size: 0.82rem;
+  }
+
+  .layout-desktop .dataTables_wrapper .dataTables_filter input {
+    width: 120px;
+  }
+
+  /* Sembunyikan kolom non-esensial di layar kecil */
+  .layout-desktop table.dataTable th:nth-child(n+5),
+  .layout-desktop table.dataTable td:nth-child(n+5) {
+    display: none;
+  }
+}
+
+/* ── Tombol aksi mobile lebih besar ── */
+.layout-mobile .btn {
+  min-height: 44px;
+  font-size: 1rem;
+}

@@ -1,0 +1,53 @@
+# Mengaktifkan RewriteEngine
+RewriteEngine On
+
+# Redirect HTTP ke HTTPS — dilewati untuk localhost / 127.0.0.1
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^localhost(:[0-9]+)?$ [NC]
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1(:[0-9]+)?$
+RewriteCond %{HTTP_HOST} !^::1$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Mencegah directory listing
+Options -Indexes
+
+# Membatasi akses ke file sensitif
+<FilesMatch "\.(env|ini|log|sh|bak|sql|yml|json|xml|htaccess|htpasswd)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_negotiation.c>
+    Options -MultiViews -Indexes
+</IfModule>
+
+
+
+# Mencegah klikjacking dengan X-Frame-Options
+Header always append X-Frame-Options SAMEORIGIN
+
+# Melindungi dari serangan XSS
+Header set X-XSS-Protection "1; mode=block"
+
+# Melindungi dari serangan MIME-sniffing
+Header set X-Content-Type-Options nosniff
+Header unset X-Powered-By
+Header unset Server
+
+
+
+# Menyembunyikan informasi server
+ServerSignature Off
+
+
+# Mencegah akses langsung ke file index.php pada CodeIgniter
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+
+# Logging Error untuk Debug (jika diperlukan)
+# php_value log_errors On
+# php_value error_log /path/to/your/error.log
