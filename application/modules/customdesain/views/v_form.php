@@ -67,29 +67,6 @@
                         <input class="form-control" name="due_date" value="<?= $x?$x['due_date'] : '' ?>"/>
                     </div>
                 </div>
-        <div class="col-md-4">
-            <label class="required form-label">Tipe Desain</label>
-            <div class="input-group input-group-sm flex-nowrap mb-2">
-                <select class="form-select" name="design_type" id="design_type_select"
-                        onchange="toggleDesignUpload(this.value)" required>
-                    <option value="">-- Pilih Tipe --</option>
-                    <option value="polos" <?= ($x && $x['design_type']=='polos') ? 'selected' : '' ?>>Polos</option>
-                    <option value="bergambar" <?= ($x && $x['design_type']=='bergambar') ? 'selected' : '' ?>>Bergambar</option>
-                    <option value="stiker" <?= ($x && $x['design_type']=='stiker') ? 'selected' : '' ?>>Stiker</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4" id="design_attachment_group" style="display:<?= ($x && in_array($x['design_type'], ['bergambar','stiker'])) ? 'block' : 'none' ?>;">
-            <label class="form-label" id="design_attachment_label">Lampiran Desain</label>
-            <small class="text-muted d-block">Wajib untuk tipe Bergambar/Stiker</small>
-            <div class="input-group input-group-sm flex-nowrap mb-2">
-                <input type="file" class="form-control" name="design_attachment"
-                       id="design_attachment_input">
-            </div>
-            <?php if ($x && $x['design_attachment']): ?>
-            <small class="text-success">File saat ini: <?= $x['design_attachment'] ?></small>
-            <?php endif; ?>
-        </div>
         </div>
     </div>
     <div class="card card-flush mb-5" id="card-line">
@@ -173,21 +150,5 @@
             </div>
         </div>
     </div>
-<script>
-function toggleDesignUpload(val) {
-    var group = document.getElementById('design_attachment_group');
-    var input = document.getElementById('design_attachment_input');
-    if (val === 'bergambar' || val === 'stiker') {
-        group.style.display = 'block';
-        input.setAttribute('required', 'required');
-    } else {
-        group.style.display = 'none';
-        input.removeAttribute('required');
-    }
-}
-document.addEventListener('DOMContentLoaded', function() {
-    var sel = document.getElementById('design_type_select');
-    if (sel) toggleDesignUpload(sel.value);
-});
-</script>
+
 </form>
