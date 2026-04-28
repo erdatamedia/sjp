@@ -65,8 +65,8 @@ if (!function_exists('get_role_filter_tabs')) {
             ],
             9  => [ // Printing digital
                 ['status'=>'',        'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
-                ['status'=>'printing','label'=>'Mau Dikerjakan',        'class'=>'filter-tab-printing'],
-                ['status'=>'packing', 'label'=>'Sudah Selesai',         'class'=>'filter-tab-packing'],
+                ['status'=>'packing', 'label'=>'Mau Dikerjakan',        'class'=>'filter-tab-packing'],
+                ['status'=>'done',    'label'=>'Sudah Selesai',         'class'=>'filter-tab-done'],
             ],
             3  => [ // Design
                 ['status'=>'',       'label'=>'Semua Proses',  'class'=>'filter-tab-all'],
