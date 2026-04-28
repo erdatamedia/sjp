@@ -187,7 +187,8 @@
 					<div class="row mb-6">
 						<label class="col-lg-4 col-form-label fw-bold fs-6">Finishing</label>
 						<div class="col-lg-8 fv-row">
-							<input type="text" name="nama_periksa" class="form-control" placeholder="Finishing" value="<?= $setting ? $setting['nama_periksa'] : '' ?>" />
+							<input type="text" name="nama_diterima" class="form-control" placeholder="Finishing"
+                           value="<?= $setting ? $setting['nama_diterima'] : '' ?>" />
 						</div>
 					</div>
 					<div class="row mb-6">

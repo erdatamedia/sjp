@@ -210,7 +210,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Pekerjaan Polosan</span>
+												<span class="menu-title">SPK Polosan</span>
 											</a>
 										</div>
 									<?php endif ?>
@@ -220,7 +220,7 @@
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
-											<span class="menu-title">Pekerjaan Desain</span>
+											<span class="menu-title">SPK Desain</span>
 										</a>
 									</div>
 									<?php endif ?>
@@ -231,7 +231,7 @@
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
-											<span class="menu-title">Pekerjaan Digital Printing</span>
+											<span class="menu-title">SPK Digital Printing</span>
 										</a>
 									</div>
 									<?php endif ?>

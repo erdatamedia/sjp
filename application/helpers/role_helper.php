@@ -29,7 +29,7 @@ if (!function_exists('can_see_filter')) {
      *   11 = Designer
      */
     function can_see_filter($id_role) {
-        $hidden = [2, 8];
+        $hidden = [8];
         return !in_array((int) $id_role, $hidden);
     }
 }
@@ -64,9 +64,9 @@ if (!function_exists('get_role_filter_tabs')) {
                 ['status'=>'packing', 'label'=>'Sudah Selesai',         'class'=>'filter-tab-packing'],
             ],
             9  => [ // Printing digital
-                ['status'=>'',        'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
-                ['status'=>'packing', 'label'=>'Mau Dikerjakan',        'class'=>'filter-tab-packing'],
-                ['status'=>'done',    'label'=>'Sudah Selesai',         'class'=>'filter-tab-done'],
+                ['status'=>'',       'label'=>'Semua Proses',  'class'=>'filter-tab-all'],
+                ['status'=>'desain', 'label'=>'Mau Dikerjakan','class'=>'filter-tab-desain'],
+                ['status'=>'packing','label'=>'Sudah Selesai', 'class'=>'filter-tab-packing'],
             ],
             3  => [ // Design
                 ['status'=>'',       'label'=>'Semua Proses',  'class'=>'filter-tab-all'],
