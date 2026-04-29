@@ -182,7 +182,7 @@ class Digital extends MY_Controller
 	}
 
 	private function getPekerjaan($id) {
-		$result = $this->db->select('pekerjaan_digital.id, pekerjaan_digital.id_user, pekerjaan_digital.created_at, pekerjaan_digital.due_date, pekerjaan_digital.id_pesanan, pekerjaan_digital.tgl_pengiriman, pekerjaan_digital.jenis_order, pekerjaan_digital.durasi, pekerjaan_digital.jenis_order, pekerjaan_digital.status, user.name')->join('user', 'user.id=pekerjaan_digital.id_user', 'left')->where('pekerjaan_digital.id', $id)->get('pekerjaan_digital')->row_array();
+		$result = $this->db->select('pekerjaan_digital.id, pekerjaan_digital.id_user, pekerjaan_digital.created_at, pekerjaan_digital.due_date, pekerjaan_digital.id_pesanan, pekerjaan_digital.tgl_pengiriman, pekerjaan_digital.jenis_order, pekerjaan_digital.durasi, pekerjaan_digital.jenis_order, pekerjaan_digital.status, pekerjaan_digital.completed_at, pekerjaan_digital.shipped_at, user.name')->join('user', 'user.id=pekerjaan_digital.id_user', 'left')->where('pekerjaan_digital.id', $id)->get('pekerjaan_digital')->row_array();
 		if ($result) {
 			$result['detail'] = $this->db->where('id_pekerjaan', $result['id'])->get('d_pekerjaan_digital')->result_array();
 			foreach ($result['detail'] as $key => $value) {

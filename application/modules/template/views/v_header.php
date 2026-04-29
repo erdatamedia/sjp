@@ -225,7 +225,7 @@
 									</div>
 									<?php endif ?>
 									
-									<?php if (in_array($user['id_role'], [1, 2, 7, 8, 9, 10])): ?>
+									<?php if (in_array($user['id_role'], [1, 2, 6, 7, 8, 9, 10])): ?>
 									<div class="menu-item <?= $module=='digital' ? 'here' : '' ?>">
 										<a class="menu-link" href="<?= base_url('digital') ?>">
 											<span class="menu-bullet">

@@ -9,7 +9,7 @@
 		<input type="hidden" name="status" value="<?= $statusChange ?>">
 		<div class="card-header align-items-center" id="card-header">
 			<div class="btn-group btn-group-sm my-2 my-sm-0">
-				<a href="<?= base_url($module) ?>" class="btn btn-light btn-sm"><i class="fa fa-chevron-left"></i></a>
+				<a href="<?= base_url($module) ?>" class="btn btn-light btn-sm"><i class="bi bi-chevron-left"></i></a>
 					<?php if ($x['status'] == 'desain'  && $user['id_role'] == 9):  ?>
 						<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChange(this)">
 							<span class="indicator-label">
@@ -77,9 +77,17 @@
 					<dotlottie-player src="https://lottie.host/6623c85c-cbf7-4d06-a503-aa171b136109/dKtcGRHi6j.json" background="transparent" speed="1" style="width: 60px; height: 60px;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
 				<?php endif ?>
 			</div>
+			<div class="d-flex flex-column align-items-end px-3 py-2 gap-1">
+				<?php if (!empty($x['completed_at'])): ?>
+				<small class="text-muted"><span class="fw-bold">Selesai:</span> <?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?></small>
+				<?php endif ?>
+				<?php if (!empty($x['shipped_at'])): ?>
+				<small class="text-muted"><span class="fw-bold">Dikirim:</span> <?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?></small>
+				<?php endif ?>
+			</div>
 			<div class="card-title ">
 				<span id="kt_title" class="fs-2 fw-bolder"></span>
-				
+
 			</div>
 		</div>
 		<div class="card-body row" id="div-info">

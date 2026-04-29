@@ -215,7 +215,7 @@ class Customdesain extends MY_Controller
 	}
 
 	private function getPekerjaan($id) {
-		$result = $this->db->select('pekerjaan.id, pekerjaan.id_user, pekerjaan.created_at, pekerjaan.due_date, pekerjaan.tgl_pengiriman, pekerjaan.id_pesanan, pekerjaan.id_rule, pekerjaan.jenis_order, pekerjaan.durasi, pekerjaan.jenis_order, pekerjaan.status, user.name')->join('user', 'user.id=pekerjaan.id_user', 'left')->where('pekerjaan.id', $id)->get('pekerjaan')->row_array();
+		$result = $this->db->select('pekerjaan.id, pekerjaan.id_user, pekerjaan.created_at, pekerjaan.due_date, pekerjaan.tgl_pengiriman, pekerjaan.id_pesanan, pekerjaan.id_rule, pekerjaan.jenis_order, pekerjaan.durasi, pekerjaan.jenis_order, pekerjaan.status, pekerjaan.completed_at, pekerjaan.shipped_at, user.name')->join('user', 'user.id=pekerjaan.id_user', 'left')->where('pekerjaan.id', $id)->get('pekerjaan')->row_array();
 		if ($result) {
 			$result['detail'] = $this->db->where('id_pekerjaan', $result['id'])->get('d_pekerjaan')->result_array();
 			foreach ($result['detail'] as $key => $value) {
