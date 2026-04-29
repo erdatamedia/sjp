@@ -296,6 +296,7 @@ class Polosan extends RestController
 			$this->delNotifikasi($id);
 			$result = $this->updateStatusPekerjaan($id, $status);
 			// 3C: catat timestamp selesai produksi
+			if (!isset($this->Spk_model)) $this->load->model('Spk_model');
 			$this->Spk_model->set_completed_at($id);
 			$pekerjaan = $this->getPekerjaan($id);
 			$act = $pekerjaan['id_pesanan'] . "-" . "Polosan" . "-".  "Selesai";
@@ -398,6 +399,7 @@ class Polosan extends RestController
 			$this->delNotifikasi($id);
 			$this->updateStatusPekerjaan($id, $status);
 			// 3C: catat timestamp dikirim ke customer
+			if (!isset($this->Spk_model)) $this->load->model('Spk_model');
 			$this->Spk_model->set_shipped_at($id);
 			$id_detail_pekerjaan = $this->input->post('id_detail') ?? [];
 			$deskripsi           = $this->input->post('deskripsi') ?? [];
