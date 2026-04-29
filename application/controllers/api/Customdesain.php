@@ -29,6 +29,17 @@ class Customdesain extends RestController
 		11 => ['desain'],
 	];
 
+	private static $ROLE_CHANGE_STATUS = [
+		'desain'            => [3, 11, 8],
+		'cutting'           => [1, 3, 8],
+		'printing'          => [4, 8],
+		'packing'           => [4, 5, 8],
+		'done'              => [6, 8],
+		'approved'          => [1, 10, 8],
+		'approved-shipping' => [7, 8],
+		'approved-customer' => [7, 8],
+	];
+
 	private function _session_role() {
 		$s = $this->session->userdata('sbki');
 		return $s ? (int) $s['id_role'] : 0;
@@ -282,10 +293,18 @@ class Customdesain extends RestController
 	}
 
 	function changeStatus_post() {
+		$id_role = $this->_session_role();
+		$status  = $this->input->post('status');
+		$id      = $this->input->post('id');
+
+		if (!isset(self::$ROLE_CHANGE_STATUS[$status])
+			|| !in_array($id_role, self::$ROLE_CHANGE_STATUS[$status])) {
+			$this->response(['status' => false, 'msg' => 'Tidak diizinkan'], 403);
+			return;
+		}
+
 		$result = true;
-		$status = $this->input->post('status');
 		$id_rule = $this->input->post('id_rule');
-		$id = $this->input->post('id');
 		$id_barang = $this->input->post('id_barang[]');
 
 		if ($status == 'desain' && $id_rule == 1) {

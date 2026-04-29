@@ -28,7 +28,8 @@ class Polosan extends RestController
 
 	// ── Status yang boleh DI-SET per role ─────────────────────────────────
 	private static $ROLE_CHANGE_STATUS = [
-		'cutting'           => [1, 8],
+		'desain'            => [3, 11, 8],
+		'cutting'           => [1, 3, 8],
 		'packing'           => [5, 8],
 		'done'              => [6, 8],
 		'approved'          => [1, 10, 8],

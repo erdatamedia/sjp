@@ -44,33 +44,7 @@ class Customdesain extends MY_Controller
 		$lines = (isset($data['kt_docs_repeater_basic'])) ? $data['kt_docs_repeater_basic'] : [];
 		unset($data['kt_docs_repeater_basic']);
 
-		// Validasi design_type wajib diisi
-		$design_type = $this->input->post('design_type');
-		if (empty($design_type)) {
-			$this->session->set_flashdata('error', 'Tipe Desain wajib dipilih.');
-			redirect(current_url());
-			return;
-		}
-		$data['design_type'] = $design_type;
-
-		// Upload lampiran wajib untuk bergambar dan stiker
-		if (in_array($design_type, ['bergambar', 'stiker'])) {
-			if (!empty($_FILES['design_attachment']['name'])) {
-				$this->upload_file_configs('./assets/uploads/design/');
-				if ($this->upload->do_upload('design_attachment')) {
-					$uploaded = $this->upload->data();
-					$data['design_attachment'] = $uploaded['file_name'];
-				} else {
-					$this->session->set_flashdata('error', 'Gagal upload lampiran: ' . $this->upload->display_errors());
-					redirect(current_url());
-					return;
-				}
-			} elseif (empty($id)) {
-				$this->session->set_flashdata('error', 'Lampiran desain wajib diupload untuk tipe Bergambar/Stiker.');
-				redirect(current_url());
-				return;
-			}
-		}
+		$data['design_type'] = $this->input->post('design_type') ?: null;
 		$jenis_order = $data['jenis_order'];
 		$id_pesanan = $data['id_pesanan'];
 		if(empty($id_pesanan)) {
