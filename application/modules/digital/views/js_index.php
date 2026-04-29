@@ -48,7 +48,7 @@
 			const qty = newTemplate.querySelector('[data-kt-subtable="template_qty"]')
 
 		
-			name.innerText = `${d.no_mc_label}, ${d.nama_dgp}, ${d.material.name}, ${d.size}`
+			name.innerText = `${d.no_mc_label}, ${d.nama_dgp}, ${d.material ? d.material.name : '-'}, ${d.size}`
 			finishing.innerText = d['finishing']			
 			qty.innerText = d['qty']
 
