@@ -461,27 +461,29 @@ class Customdesain extends RestController
 
 		}
 		if ($status == 'approved-shipping') {
-			$id_detail_pekerjaan = $this->input->post('id_detail[]');
-			$qty_keluar = $this->input->post('qty_keluar[]');
+			$id_detail_pekerjaan = $this->input->post('id_detail[]') ?? [];
+			$qty_keluar = $this->input->post('qty_keluar[]') ?? [];
+			if (empty($id_detail_pekerjaan)) {
+				$this->response(['status' => false, 'msg' => 'Detail pekerjaan tidak ditemukan'], 400);
+				return;
+			}
 			foreach ($id_detail_pekerjaan as $key => $value) {
 				$id_barang = $this->getDetailPekerjaan($value);
 				$barang =  $this->getOneStokBarang($id_barang);
 				if ($barang['stok'] < intval($qty_keluar[$key])) {
-					$result = false;
 					$this->response([
-						'status' 	=> false,
-						'msg' 		=> 'Stok Barang No. Mc: '. $barang['no_mc'] .' Tersisa '  . $barang['stok'],
+						'status' => false,
+						'msg' => 'Stok Barang No. Mc: '. $barang['no_mc'] .' Tersisa '  . $barang['stok'],
 					], 200);
+					return;
 				}
-				if ($barang['stok'] == null && intval($qty_keluar[$key]) > 0) {
-					$result = false;
+				if (($barang['stok'] == null || $barang['stok'] == 0) && intval($qty_keluar[$key]) > 0) {
 					$this->response([
-						'status' 	=> false,
-						'msg' 		=> 'Stok Barang No. Mc:'. $barang['no_mc'] .'Kosong',
+						'status' => false,
+						'msg' => 'Stok Barang No. Mc:'. $barang['no_mc'] .' Kosong',
 					], 200);
+					return;
 				}
-
-
 			}
 			if ($result) {
 				$this->delNotifikasi($id);
