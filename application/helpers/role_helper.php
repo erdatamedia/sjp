@@ -93,11 +93,12 @@ if (!function_exists('get_role_filter_tabs')) {
                 ['status'=>'approved-customer','label'=>'Dikirim',            'class'=>'filter-tab-customer'],
             ],
             10 => [ // Kabag Gudang
-                ['status'=>'',                  'label'=>'Semua Proses',       'class'=>'filter-tab-all'],
-                ['status'=>'done',              'label'=>'Selesai',            'class'=>'filter-tab-done'],
-                ['status'=>'approved',          'label'=>'Disetujui QC',      'class'=>'filter-tab-approved'],
-                ['status'=>'approved-shipping', 'label'=>'Disetujui Logistik','class'=>'filter-tab-shipping'],
-                ['status'=>'approved-customer', 'label'=>'Dikirim',           'class'=>'filter-tab-customer'],
+                ['status'=>'',                 'label'=>'Semua Proses',      'class'=>'filter-tab-all'],
+                ['status'=>'packing',          'label'=>'Finishing',         'class'=>'filter-tab-packing'],
+                ['status'=>'done',             'label'=>'Selesai',           'class'=>'filter-tab-done'],
+                ['status'=>'approved',         'label'=>'Disetujui QC',      'class'=>'filter-tab-approved'],
+                ['status'=>'approved-shipping','label'=>'Disetujui Logistik','class'=>'filter-tab-shipping'],
+                ['status'=>'approved-customer','label'=>'Dikirim',           'class'=>'filter-tab-customer'],
             ],
         ];
         return isset($map[(int)$id_role]) ? $map[(int)$id_role] : null;

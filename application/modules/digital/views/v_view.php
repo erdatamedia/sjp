@@ -30,7 +30,7 @@
 							</span>
 						</button>
 					<?php endif ?>
-					<?php if ($x['status'] == 'packing' && $user['id_role'] == 10): ?>
+					<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [6, 9, 10])): ?>
 						<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChangeShipping(this)">
 							<span class="indicator-label">
 								Completed

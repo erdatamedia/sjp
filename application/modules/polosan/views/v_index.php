@@ -87,7 +87,7 @@
 	/* Tombol aksi: opacity rendah, penuh saat hover */
 	.action-column .btn-icon,
 	.btn-icon.toggle {
-	  opacity: 0.35;
+	  opacity: 0.55;
 	  transition: opacity 0.15s;
 	}
 	.action-column .btn-icon:hover,

@@ -24,9 +24,18 @@ class Digital extends RestController
 		9  => ['desain', 'printing', 'packing'],
 		6  => ['packing', 'done'],
 		7  => ['approved-shipping', 'approved-customer'],
-		10 => ['done', 'approved', 'approved-shipping', 'approved-customer'],
+		10 => ['packing', 'done', 'approved', 'approved-shipping', 'approved-customer'],
 		3  => ['desain'],
 		11 => ['desain'],
+	];
+
+	private static $ROLE_CHANGE_STATUS = [
+		'desain'            => [9, 8],
+		'printing'          => [9, 8],
+		'packing'           => [6, 9, 10, 8],
+		'done'              => [6, 10, 8],
+		'approved-shipping' => [7, 8],
+		'approved-customer' => [7, 8],
 	];
 
 	private function _session_role() {
@@ -236,9 +245,17 @@ class Digital extends RestController
 
 
 	function changeStatus_post() {
+		$id_role = $this->_session_role();
+		$status  = $this->input->post('status');
+		$id      = $this->input->post('id');
+
+		if (!isset(self::$ROLE_CHANGE_STATUS[$status])
+			|| !in_array($id_role, self::$ROLE_CHANGE_STATUS[$status])) {
+			$this->response(['status' => false, 'msg' => 'Tidak diizinkan'], 403);
+			return;
+		}
+
 		$result = true;
-		$status = $this->input->post('status');
-		$id = $this->input->post('id');;
 
 		if ($status == 'printing') {
 			$result = true;
