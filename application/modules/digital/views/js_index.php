@@ -226,8 +226,9 @@
 				}
 			},{
 				title: 'Sales', data: 'name', className: 'min-w-125px',
+				defaultContent: '-',
 				render : function (data, type, row) {
-					return data? data : 'Kosong'
+					return data ? data : '-'
 				}
 			},{
 				title: 'Aksi', data: 'id', className: 'text-end action-column', sortable: false,

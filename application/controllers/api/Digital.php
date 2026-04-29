@@ -102,9 +102,10 @@ class Digital extends RestController
         
         $data = $this->db->get('pekerjaan_digital')->result_array();
         foreach ($data as &$item) {
+            if (is_null($item['name'])) $item['name'] = '-';
             $item['detail'] = $this->getDetailPekerjaanPesanan($item['id']);
         }
-    
+
         $this->response([
             'draw' => $draw,
             'recordsTotal' => $recordsTotal,
@@ -159,9 +160,10 @@ class Digital extends RestController
         
         $data = $this->db->get('pekerjaan_digital')->result_array();
         foreach ($data as &$item) {
+            if (is_null($item['name'])) $item['name'] = '-';
             $item['detail'] = $this->getDetailPekerjaanPesanan($item['id']);
         }
-    
+
         $this->response([
             'draw' => $draw,
             'recordsTotal' => $recordsTotal,
