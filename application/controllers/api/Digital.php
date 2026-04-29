@@ -443,8 +443,9 @@ class Digital extends RestController
 	}
 
 	private function getOneMaterial($id) {
+		if (!$id) return null;
 		$data = $this->db->select('name')->where('id', $id)->get('material')->row_array();
-		return $data;
+		return $data ?: null;
 	}
 
 
