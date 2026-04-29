@@ -113,6 +113,15 @@
 									<tr class="fw-bolder" style="border: 1px solid black;">
 										<th class="text-black" style="padding-left: 5px;">No. Mc</th>
 										<td class="text-strat" ><?= $item['barang']['no_mc'] ?></td>
+										<td>
+											<small class="text-muted d-block">Dibuat: <?= date('d/m/Y', strtotime($x['created_at'])) ?></small>
+											<?php if (!empty($x['completed_at'])): ?>
+											<small class="text-muted d-block">Selesai: <?= date('d/m/Y', strtotime($x['completed_at'])) ?></small>
+											<?php endif ?>
+											<?php if (!empty($x['shipped_at'])): ?>
+											<small class="text-muted d-block">Dikirim: <?= date('d/m/Y', strtotime($x['shipped_at'])) ?></small>
+											<?php endif ?>
+										</td>
 									</tr>
 									<tr class="fw-bolder" style="border: 1px solid black;">
 										<th class="text-black" style="padding-left: 5px; color: blue;">Product Name</th>

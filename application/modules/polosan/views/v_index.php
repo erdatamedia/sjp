@@ -84,16 +84,7 @@
 	}
 	.filter-tab-desain .filter-badge { background: rgba(200,0,0,0.13); color: #b00000; }
 
-	/* Tombol aksi: opacity rendah, penuh saat hover */
-	.action-column .btn-icon,
-	.btn-icon.toggle {
-	  opacity: 0.55;
-	  transition: opacity 0.15s;
-	}
-	.action-column .btn-icon:hover,
-	.btn-icon.toggle:hover {
-	  opacity: 1;
-	}
+
 </style>
 
 <div class="container-fluid" id="kt_content_container">

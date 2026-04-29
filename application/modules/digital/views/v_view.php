@@ -31,7 +31,7 @@
 						</button>
 					<?php endif ?>
 					<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [6, 9, 10])): ?>
-						<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChangeShipping(this)">
+						<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChange(this)">
 							<span class="indicator-label">
 								Completed
 							</span>
@@ -196,6 +196,24 @@
 											<input type="hidden" name="id_detail" value="<?= $line['id'] ?>">
 											<input type="hidden" name="id_produk" value="<?= $line['id_produk'] ?>">
 											<div class="fw-bolder" onclick="modalDetail(this, <?= $line['id_produk'] ?>)" style="color: blue; cursor: pointer;"><?= $line['barang']['no_mc_label'] . ", " . $line['barang']['nama_dgp'] . ", " . $line['barang']['name']?></div>
+											<div class="d-flex flex-column mt-1 gap-1">
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Dibuat:</span>
+													<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
+												</small>
+												<?php if (!empty($x['completed_at'])): ?>
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Selesai:</span>
+													<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
+												</small>
+												<?php endif ?>
+												<?php if (!empty($x['shipped_at'])): ?>
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Dikirim:</span>
+													<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
+												</small>
+												<?php endif ?>
+											</div>
 											<div class="mb-2"><?= $line['finishing'] ?></div>
 											<div class="d-flex">
 												<a href="<?= base_url('digital/upload/') . $line['id_produk'] . "/" . $x['id'] ?>" class="btn btn-primary btn-sm">

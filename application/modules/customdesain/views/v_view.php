@@ -219,6 +219,24 @@
 											<input type="hidden" name="id_detail" value="<?= $line['id'] ?>">
 											<input type="hidden" name="id_barang" value="<?= $line['id_barang'] ?>">
 											<div class="fw-bolder" onclick="modalDetail(this, <?= $line['id_barang'] ?>)" style="color: blue; cursor: pointer;"><?= $line['barang']['no_mc'] . " ". $line['barang']['item_box'] ?></div>
+											<div class="d-flex flex-column mt-1 gap-1">
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Dibuat:</span>
+													<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
+												</small>
+												<?php if (!empty($x['completed_at'])): ?>
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Selesai:</span>
+													<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
+												</small>
+												<?php endif ?>
+												<?php if (!empty($x['shipped_at'])): ?>
+												<small class="text-muted">
+													<span class="fw-bold">Tgl Dikirim:</span>
+													<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
+												</small>
+												<?php endif ?>
+											</div>
 											<div class="mb-2"><?= $line['barang']['deskripsi'] ?></div>
 											<div class="d-flex">
 												<a href="<?= base_url('customdesain/upload/') . $line['id_barang'] . '/' . $x['id'] ?>" class="btn btn-primary btn-sm">

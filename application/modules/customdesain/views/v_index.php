@@ -32,16 +32,6 @@
 .filter-tab-shipping .filter-badge { background: rgba(64,47,29,0.14);    color: #402f1d; }
 .filter-tab-customer .filter-badge { background: rgba(34,143,21,0.13);   color: #1a6b0f; }
 
-/* Tombol aksi: opacity rendah, penuh saat hover */
-.action-column .btn-icon,
-.btn-icon.toggle {
-  opacity: 0.55;
-  transition: opacity 0.15s;
-}
-.action-column .btn-icon:hover,
-.btn-icon.toggle:hover {
-  opacity: 1;
-}
 </style>
 <div class="container-fluid" id="kt_content_container">
 	<div class="row g-5 g-xl-8">
