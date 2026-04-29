@@ -438,16 +438,17 @@ class Customdesain extends RestController
 			$pekerjaan = $this->getPekerjaan($id);
 			$result = $this->updateStatusPekerjaan($id, $status, $id_rule);
 			// 3C: catat timestamp selesai produksi
+			if (!isset($this->Spk_model)) $this->load->model('Spk_model');
 			$this->Spk_model->set_completed_at($id);
 			$act = $pekerjaan['id_pesanan'] . "-" . "Custom Design" . "-".  "Selesai";
 			$this->pusher($act, 10);
 			$this->pusherActivity();
 			$this->pusherProses();
 			$this->saveNotification($id, 10, $pekerjaan['id_user'], $status);
-			$id_detail_pekerjaan = $this->input->post('id_detail[]');
-			$qty_masuk = $this->input->post('qty_masuk[]');
-			$deskripsi = $this->input->post('deskripsi[]');
-			foreach ($id_detail_pekerjaan as $key => $value) {
+			$id_detail_pekerjaan = $this->input->post('id_detail[]') ?? [];
+			$qty_masuk = $this->input->post('qty_masuk[]') ?? [];
+			$deskripsi = $this->input->post('deskripsi[]') ?? [];
+			if (!empty($id_detail_pekerjaan)) foreach ($id_detail_pekerjaan as $key => $value) {
 				$update['id'] = $value;
 				$update['qty_masuk'] = $qty_masuk[$key];
 				$update['deskripsi'] = $deskripsi[$key];
