@@ -24,7 +24,7 @@ class Customdesain extends RestController
 		6  => ['packing', 'done'],
 		7  => ['approved', 'approved-shipping', 'approved-customer'],
 		10 => ['done', 'approved', 'approved-shipping', 'approved-customer'],
-		4  => ['printing'],
+		4  => ['printing', 'packing'],
 		3  => ['desain', 'cutting'],
 		11 => ['desain', 'cutting'],
 	];

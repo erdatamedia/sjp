@@ -18,9 +18,9 @@ class Polosan extends RestController
 	// null  = tidak dibatasi (admin/kabag)
 	// array = hanya status dalam list ini
 	private static $ROLE_VIEW_STATUS = [
-		1  => ['waiting', 'desain', 'cutting', 'printing', 'packing', 'done'],
+		1  => ['waiting', 'desain', 'cutting', 'packing', 'done'],
 		3  => ['desain', 'cutting'],
-		5  => ['cutting'],
+		5  => ['cutting', 'packing'],
 		6  => ['packing', 'done'],
 		7  => ['approved', 'approved-shipping', 'approved-customer'],
 		10 => ['done', 'approved', 'approved-shipping', 'approved-customer'],
