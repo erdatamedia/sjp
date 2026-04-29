@@ -529,10 +529,11 @@ class Customdesain extends RestController
 			$this->delNotifikasi($id);
 			$this->updateStatusPekerjaan($id, $status, $id_rule);
 			// 3C: catat timestamp dikirim ke customer
+			if (!isset($this->Spk_model)) $this->load->model('Spk_model');
 			$this->Spk_model->set_shipped_at($id);
-			$id_detail_pekerjaan = $this->input->post('id_detail[]');
-			$deskripsi = $this->input->post('deskripsi[]');
-			foreach ($id_detail_pekerjaan as $key => $value) {
+			$id_detail_pekerjaan = $this->input->post('id_detail[]') ?? [];
+			$deskripsi = $this->input->post('deskripsi[]') ?? [];
+			if (!empty($id_detail_pekerjaan)) foreach ($id_detail_pekerjaan as $key => $value) {
 				$update['deskripsi'] = $deskripsi[$key];
 				$this->db->where('id', $value)->update('d_pekerjaan', $update);
 			}
