@@ -25,8 +25,8 @@ class Customdesain extends RestController
 		7  => ['approved', 'approved-shipping', 'approved-customer'],
 		10 => ['done', 'approved', 'approved-shipping', 'approved-customer'],
 		4  => ['printing'],
-		3  => ['desain'],
-		11 => ['desain'],
+		3  => ['desain', 'cutting'],
+		11 => ['desain', 'cutting'],
 	];
 
 	private static $ROLE_CHANGE_STATUS = [
