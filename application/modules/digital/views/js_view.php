@@ -51,7 +51,7 @@
 				allowEscapeKey: false,
 				buttonsStyling: false,
 				showCancelButton: true,
-				cancelmButtonText: 'Cancel',
+				cancelButtonText: 'Cancel',
 				confirmButtonText: 'Ok',
 				customClass: {
 					cancelButton: 'btn btn-light-danger',
@@ -119,7 +119,7 @@
 				allowEscapeKey: false,
 				buttonsStyling: false,
 				showCancelButton: true,
-				cancelmButtonText: 'Cancel',
+				cancelButtonText: 'Cancel',
 				confirmButtonText: 'Ok',
 				customClass: {
 					cancelButton: 'btn btn-light-danger',
