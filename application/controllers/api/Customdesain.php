@@ -20,7 +20,7 @@ class Customdesain extends RestController
 
 	private static $ROLE_VIEW_STATUS = [
 		1  => ['waiting', 'cutting', 'printing', 'packing', 'done'],
-		5  => ['cutting'],
+		5  => ['cutting', 'printing'],
 		6  => ['packing', 'done'],
 		7  => ['approved', 'approved-shipping', 'approved-customer'],
 		10 => ['done', 'approved', 'approved-shipping', 'approved-customer'],
