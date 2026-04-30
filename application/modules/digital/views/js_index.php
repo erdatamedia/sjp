@@ -196,19 +196,16 @@
 			},{
 				title: 'Jenis Order', data: 'jenis_order', className: 'min-w-125px',
 				render : function(data, type, row){
-					if (data == 'lainnya') {
-						return "Other"
-					}
-					if (data == 'new-order') {
-						return "New Order"
-					}
-					if (data == 'repeat-order') {
-						return "Repeat Order"
-					}
+					if (!data) return '-'
+					if (data == 'lainnya') return "Other"
+					if (data == 'new-order') return "New Order"
+					if (data == 'repeat-order') return "Repeat Order"
+					return data
 				}
 			},{
 				title: 'Status', data: 'status', className: 'min-w-125px',
 				render : function (data, type, row) {
+				if (!data) return '<span class="badge badge-secondary">-</span>';
 				const map = {
 					'waiting':           ['Menunggu Material/Alat', 'rgba(200,100,0,0.1)',    '#a05500', 'rgba(200,100,0,0.3)'],
 					'cutting':           ['Cutting',                'rgba(30,30,30,0.09)',    '#222',    'rgba(30,30,30,0.28)'],
@@ -228,7 +225,8 @@
 				title: 'Sales', data: 'name', className: 'min-w-125px',
 				defaultContent: '-',
 				render : function (data, type, row) {
-					return data ? data : '-'
+					if (data === null || data === undefined) return '-'
+					return data
 				}
 			},{
 				title: 'Aksi', data: 'id', className: 'text-end action-column', sortable: false,

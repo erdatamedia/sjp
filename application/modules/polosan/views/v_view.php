@@ -152,12 +152,52 @@
 					    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-6 me-2">
 							<span class="fw-bolder text-dark fs-4 mb-2">Delivery Date</span>
 								<span class="fw-bold fs-5 text-muted"><?= $x['tgl_pengiriman']? date('d/m/Y', strtotime($x['tgl_pengiriman']))  : 'Empty' ?></span>
-								
+
 						</div>
 						<img src="<?= base_url('assets/media/icon/delivery-time.png') ?>" alt="" class="align-self-end h-80px" />
 					</div>
 				</div>
 			</div>
+			<div class="col-md-4">
+				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
+						<div class="d-flex align-items-center mb-1">
+							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Dibuat</span>
+						</div>
+						<div class="fw-bold text-muted fs-5">
+							<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php if (!empty($x['completed_at'])): ?>
+			<div class="col-md-4">
+				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
+						<div class="d-flex align-items-center mb-1">
+							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Selesai</span>
+						</div>
+						<div class="fw-bold text-muted fs-5">
+							<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php endif ?>
+			<?php if (!empty($x['shipped_at'])): ?>
+			<div class="col-md-4">
+				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
+					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
+						<div class="d-flex align-items-center mb-1">
+							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Dikirim</span>
+						</div>
+						<div class="fw-bold text-muted fs-5">
+							<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php endif ?>
 
 			<?php if ($user['id_role'] == 7): ?>
 				<button id="kt_drawer_note" class="btn btn-primary btn-sm col-2" style="margin-left: 8px;">see note</button>
@@ -184,24 +224,6 @@
 											<label class="form-label">Product &amp; Isian</label>
 											<input type="hidden" name="id_detail" value="<?= $line['id'] ?>">
 											<div class="fw-bolder" onclick="modalDetail(this, <?= $line['id_barang'] ?>)" style="color: blue; cursor: pointer;"><?= $line['barang']['no_mc'] . " ". $line['barang']['item_box'] ?></div>
-											<div class="d-flex flex-column mt-1 gap-1">
-												<small class="text-muted">
-													<span class="fw-bold">Tgl Dibuat:</span>
-													<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
-												</small>
-												<?php if (!empty($x['completed_at'])): ?>
-												<small class="text-muted">
-													<span class="fw-bold">Tgl Selesai:</span>
-													<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
-												</small>
-												<?php endif ?>
-												<?php if (!empty($x['shipped_at'])): ?>
-												<small class="text-muted">
-													<span class="fw-bold">Tgl Dikirim:</span>
-													<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
-												</small>
-												<?php endif ?>
-											</div>
 											<div class="mb-2"><?= $line['barang']['deskripsi'] ?></div>
 											<div class="d-flex mt-2">
 											    <a href="<?= base_url('polosan/upload/') . $line['id_barang'] . '/' . $x['id'] ?>"
