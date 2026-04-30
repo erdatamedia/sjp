@@ -278,6 +278,9 @@ class Digital extends MY_Controller
 		}
 
 		if ($status == 'packing') {
+			return 'done';
+		}
+		if ($status == 'done') {
 			return 'approved-shipping';
 		}
 
@@ -295,6 +298,9 @@ class Digital extends MY_Controller
 		}
 		if ($status == 'packing') {
 			return 'Packing';
+		}
+		if ($status == 'done') {
+			return 'Selesai';
 		}
 		if ($status == 'confirm') {
 			return 'Confirmation';
@@ -316,6 +322,9 @@ class Digital extends MY_Controller
 		}
 		if ($status == 'packing') {
 			return '#ff1493';
+		}
+		if ($status == 'done') {
+			return 'blue';
 		}
 
 		if ($status == 'confirm') {
@@ -344,6 +353,9 @@ class Digital extends MY_Controller
 		}
 		if ($status == 'packing') {
 			return 'Harap pastikan bahwa semua pekerjaan telah selesai dengan benar sebelum menekan tombol <span class="badge badge-info">Ok</span> untuk pekerjaan Digital Printing ' . $id_pesanan;
+		}
+		if ($status == 'done') {
+			return 'Harap pastikan pekerjaan sudah selesai sebelum menekan Ok untuk ' . $id_pesanan;
 		}
 		if ($status == 'approved-shipping') {
 			return 'Harap pastikan bahwa semua pekerjaan telah selesai dengan benar sebelum menekan tombol <span class="badge badge-info">Ok</span> untuk pekerjaan Digital Printing ' . $id_pesanan;
