@@ -281,7 +281,7 @@ class Digital extends RestController
 			$this->delNotifikasi($id);
 			$pekerjaan = $this->getPekerjaan($id);
 			$this->updateStatusPekerjaan($id, $status);
-			$act = $pekerjaan['id_pesanan'] . "-" . "Digital printing" . "-".  "Packing"; 
+			$act = $pekerjaan['id_pesanan'] . "-" . "Digital printing" . "-".  "Packing";
 			$this->pusher($act, 10);
 			$this->pusherProses();
 			$this->saveNotification($id, 10, $pekerjaan['id_user'], $status);
@@ -290,6 +290,35 @@ class Digital extends RestController
 			foreach ($id_detail_pekerjaan as $key => $value) {
 				$update['deskripsi'] = $deskripsi[$key];
 				$this->db->where('id', $value)->update('d_pekerjaan_digital', $update);
+			}
+		}
+
+		if ($status == 'done') {
+			$result = true;
+			$this->delNotifikasi($id);
+			$pekerjaan = $this->getPekerjaan($id);
+			$this->updateStatusPekerjaan($id, $status);
+			if (!isset($this->Spk_model)) $this->load->model('Spk_model');
+			$this->Spk_model->set_completed_at($id);
+			$act = $pekerjaan['id_pesanan'] . "-" . "Digital printing" . "-". "Selesai";
+			$this->pusher($act, 10);
+			$this->pusherProses();
+			$this->saveNotification($id, 10, $pekerjaan['id_user'], $status);
+			$id_detail_pekerjaan = $this->input->post('id_detail[]') ?? [];
+			$deskripsi           = $this->input->post('deskripsi[]') ?? [];
+			$pcs                 = $this->input->post('qty_object[]') ?? [];
+			$reject_pcs          = $this->input->post('reject_object[]') ?? [];
+			if (!empty($id_detail_pekerjaan)) {
+				foreach ($id_detail_pekerjaan as $key => $value) {
+					$detailPekerjaan = $this->getDetailPekerjaan($value);
+					$update['deskripsi'] = $deskripsi[$key] ?? '';
+					if (!empty($pcs[$key])) {
+						$update['qty_total']     = $pcs[$key] * $detailPekerjaan['qty'];
+						$update['qty_object']    = $pcs[$key];
+						$update['reject_object'] = $reject_pcs[$key] ?? 0;
+					}
+					$this->db->where('id', $value)->update('d_pekerjaan_digital', $update);
+				}
 			}
 		}
 
