@@ -128,6 +128,17 @@
 			}).then((res)=>{
 				if (res.isConfirmed) {
 					var formData = new FormData()
+					if (status.val() == 'packing') {
+						formData.append('id', id_pekerjaan.val())
+						formData.append('status', status.val())
+						id_detail_pekerjaan.each((index, item) => {
+							formData.append('id_detail[]', id_detail_pekerjaan[index].value)
+							formData.append('qty_object[]', pcs[index].value)
+							formData.append('reject_object[]', reject_pcs[index].value)
+							formData.append('deskripsi[]', noteIsian[index].value)
+						})
+						saveChange(formData)
+					}
 					if (status.val() == 'approved-shipping') {
 						formData.append('id', id_pekerjaan.val())
 						formData.append('status', status.val())
