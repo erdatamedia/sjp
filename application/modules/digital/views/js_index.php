@@ -196,37 +196,45 @@
 			},{
 				title: 'Jenis Order', data: 'jenis_order', className: 'min-w-125px',
 				render : function(data, type, row){
-					if (!data) return '-'
-					if (data == 'lainnya') return "Other"
-					if (data == 'new-order') return "New Order"
-					if (data == 'repeat-order') return "Repeat Order"
-					return data
+					try {
+						if (!data) return '-'
+						if (data == 'lainnya') return "Other"
+						if (data == 'new-order') return "New Order"
+						if (data == 'repeat-order') return "Repeat Order"
+						return data
+					} catch(e) { return '-' }
 				}
 			},{
 				title: 'Status', data: 'status', className: 'min-w-125px',
 				render : function (data, type, row) {
-				if (!data) return '<span class="badge badge-secondary">-</span>';
-				const map = {
-					'waiting':           ['Menunggu Material/Alat', 'rgba(200,100,0,0.1)',    '#a05500', 'rgba(200,100,0,0.3)'],
-					'cutting':           ['Cutting',                'rgba(30,30,30,0.09)',    '#222',    'rgba(30,30,30,0.28)'],
-					'printing':          ['Printing',               'rgba(11,26,189,0.07)',   '#0b1abd', 'rgba(11,26,189,0.28)'],
-					'desain':            ['Desain',                 'rgba(200,0,0,0.07)',     '#b00000', 'rgba(200,0,0,0.28)'],
-					'packing':           ['Finishing',              'rgba(255,20,147,0.08)',  '#b5186b', 'rgba(255,20,147,0.28)'],
-					'done':              ['Selesai',                'rgba(13,110,253,0.07)',  '#0a58ca', 'rgba(13,110,253,0.28)'],
-					'approved':          ['Disetujui QC',     'rgba(200,180,0,0.08)',   '#7a6800', 'rgba(180,160,0,0.35)'],
-					'approved-shipping': ['Disetujui Logistik',     'rgba(64,47,29,0.07)',    '#402f1d', 'rgba(64,47,29,0.3)'],
-					'approved-customer': ['Dikirim',                'rgba(34,143,21,0.07)',   '#1a6b0f', 'rgba(34,143,21,0.3)'],
-				};
-				if (!data || !map[data]) return '<span class="badge badge-secondary">-</span>';
-				const [label, bg, color, border] = map[data];
-				return `<span class="badge" style="background:${bg};color:${color};border:1.5px solid ${border};font-weight:600;padding:4px 10px;border-radius:8px;">${label}</span>`;
+				try {
+					if (!data) return '<span class="badge badge-secondary">-</span>';
+					const map = {
+						'waiting':           ['Menunggu Material/Alat', 'rgba(200,100,0,0.1)',    '#a05500', 'rgba(200,100,0,0.3)'],
+						'cutting':           ['Cutting',                'rgba(30,30,30,0.09)',    '#222',    'rgba(30,30,30,0.28)'],
+						'printing':          ['Printing',               'rgba(11,26,189,0.07)',   '#0b1abd', 'rgba(11,26,189,0.28)'],
+						'desain':            ['Desain',                 'rgba(200,0,0,0.07)',     '#b00000', 'rgba(200,0,0,0.28)'],
+						'packing':           ['Finishing',              'rgba(255,20,147,0.08)',  '#b5186b', 'rgba(255,20,147,0.28)'],
+						'done':              ['Selesai',                'rgba(13,110,253,0.07)',  '#0a58ca', 'rgba(13,110,253,0.28)'],
+						'approved':          ['Disetujui QC',           'rgba(200,180,0,0.08)',   '#7a6800', 'rgba(180,160,0,0.35)'],
+						'approved-shipping': ['Disetujui Logistik',     'rgba(64,47,29,0.07)',    '#402f1d', 'rgba(64,47,29,0.3)'],
+						'approved-customer': ['Dikirim',                'rgba(34,143,21,0.07)',   '#1a6b0f', 'rgba(34,143,21,0.3)'],
+					};
+					if (!map[data]) return '<span class="badge badge-secondary">-</span>';
+					const [label, bg, color, border] = map[data];
+					return `<span class="badge" style="background:${bg};color:${color};border:1.5px solid ${border};font-weight:600;padding:4px 10px;border-radius:8px;">${label}</span>`;
+				} catch(e) {
+					return '<span class="badge badge-secondary">-</span>';
+				}
 				}
 			},{
 				title: 'Sales', data: 'name', className: 'min-w-125px',
 				defaultContent: '-',
 				render : function (data, type, row) {
-					if (data === null || data === undefined) return '-'
-					return data
+					try {
+						if (data === null || data === undefined) return '-'
+						return data
+					} catch(e) { return '-' }
 				}
 			},{
 				title: 'Aksi', data: 'id', className: 'text-end action-column', sortable: false,
