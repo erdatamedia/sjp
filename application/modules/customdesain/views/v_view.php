@@ -193,42 +193,45 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
-					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
-						<div class="d-flex align-items-center mb-1">
-							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Dibuat</span>
+			<div class="col-xl-4">
+				<div class="card mb-xl-8 mb-5" style="border: 5px solid <?= $setting_template['color_navbar'] ?>;">
+					<div class="card-body d-flex align-items-center pt-3 pb-1">
+						<div class="d-flex flex-column flex-grow-1 py-2 py-lg-6 me-2">
+							<span class="fw-bolder text-dark fs-4 mb-2">Tgl Dibuat</span>
+							<span class="fw-bold fs-5 text-muted">
+								<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
+							</span>
 						</div>
-						<div class="fw-bold text-muted fs-5">
-							<?= $x['created_at'] ? date('d/m/Y', strtotime($x['created_at'])) : '-' ?>
-						</div>
+						<img src="<?= base_url('assets/media/icon/time.png') ?>" alt="" class="align-self-end h-80px" />
 					</div>
 				</div>
 			</div>
 			<?php if (!empty($x['completed_at'])): ?>
-			<div class="col-md-4">
-				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
-					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
-						<div class="d-flex align-items-center mb-1">
-							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Selesai</span>
+			<div class="col-xl-4">
+				<div class="card mb-xl-8 mb-5" style="border: 5px solid <?= $setting_template['color_navbar'] ?>;">
+					<div class="card-body d-flex align-items-center pt-3 pb-1">
+						<div class="d-flex flex-column flex-grow-1 py-2 py-lg-6 me-2">
+							<span class="fw-bolder text-dark fs-4 mb-2">Tgl Selesai</span>
+							<span class="fw-bold fs-5 text-muted">
+								<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
+							</span>
 						</div>
-						<div class="fw-bold text-muted fs-5">
-							<?= date('d/m/Y H:i', strtotime($x['completed_at'])) ?>
-						</div>
+						<img src="<?= base_url('assets/media/icon/time.png') ?>" alt="" class="align-self-end h-80px" />
 					</div>
 				</div>
 			</div>
 			<?php endif ?>
 			<?php if (!empty($x['shipped_at'])): ?>
-			<div class="col-md-4">
-				<div class="card card-flush h-md-50 mb-5 mb-xl-10">
-					<div class="card-body d-flex flex-column justify-content-between pb-1 px-0">
-						<div class="d-flex align-items-center mb-1">
-							<span class="fs-6 fw-bold text-gray-800 me-2">Tgl Dikirim</span>
+			<div class="col-xl-4">
+				<div class="card mb-xl-8 mb-5" style="border: 5px solid <?= $setting_template['color_navbar'] ?>;">
+					<div class="card-body d-flex align-items-center pt-3 pb-1">
+						<div class="d-flex flex-column flex-grow-1 py-2 py-lg-6 me-2">
+							<span class="fw-bolder text-dark fs-4 mb-2">Tgl Dikirim</span>
+							<span class="fw-bold fs-5 text-muted">
+								<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
+							</span>
 						</div>
-						<div class="fw-bold text-muted fs-5">
-							<?= date('d/m/Y H:i', strtotime($x['shipped_at'])) ?>
-						</div>
+						<img src="<?= base_url('assets/media/icon/delivery-time.png') ?>" alt="" class="align-self-end h-80px" />
 					</div>
 				</div>
 			</div>
