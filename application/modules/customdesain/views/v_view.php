@@ -103,7 +103,7 @@
 				<?php if ($x['status'] == 'approved-shipping'): ?>
 					<span class="badge badge-info" style="margin-right: 4px;">Delivery</span>
 				<?php endif ?>
-				<span id="kt_title" class="fs-2 fw-bolder"></span>
+				<span id="kt_title" class="fs-2 fw-bolder" style="padding-right: 60px; display: inline-block;"></span>
 
 			</div>
 		</div>

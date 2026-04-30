@@ -86,7 +86,7 @@
 				<?php endif ?>
 			</div>
 			<div class="card-title ">
-				<span id="kt_title" class="fs-2 fw-bolder"></span>
+				<span id="kt_title" class="fs-2 fw-bolder" style="padding-right: 60px; display: inline-block;"></span>
 
 			</div>
 		</div>
