@@ -62,26 +62,30 @@
 	function statusChange(el) {
 		indicator.attr("data-kt-indicator", "on")
 		let valid = true
-		qty_masuk.each((index, item) => {
-			if (qty_masuk[index].value == '') {
-				valid = false
-				$(qty_masuk[index]).css('background-color', 'red').css('color', 'white')
-				toastr.error('Qty Masuk wajib di isi')
-				indicator.removeAttr("data-kt-indicator")
-			}else{
-				$(qty_masuk[index]).css('color', '').css('background-color', '')
-			}
-		})
-		qty_keluar.each((index, item) => {
-			if (qty_keluar[index].value == '') {
-				valid = false
-				$(qty_keluar[index]).css('background-color', 'red').css('color', 'white')
-				toastr.error('Qty Keluar wajib di isi')
-				indicator.removeAttr("data-kt-indicator")
-			}else{
-				$(qty_keluar[index]).css('color', '').css('background-color', '')
-			}
-		})
+		if (status.val() == 'packing' || status.val() == 'done') {
+			qty_masuk.each((index, item) => {
+				if (qty_masuk[index].value == '') {
+					valid = false
+					$(qty_masuk[index]).css('background-color', 'red').css('color', 'white')
+					toastr.error('Qty Masuk wajib di isi')
+					indicator.removeAttr("data-kt-indicator")
+				} else {
+					$(qty_masuk[index]).css('color', '').css('background-color', '')
+				}
+			})
+		}
+		if (status.val() == 'approved-shipping') {
+			qty_keluar.each((index, item) => {
+				if (qty_keluar[index].value == '') {
+					valid = false
+					$(qty_keluar[index]).css('background-color', 'red').css('color', 'white')
+					toastr.error('Qty Keluar wajib di isi')
+					indicator.removeAttr("data-kt-indicator")
+				} else {
+					$(qty_keluar[index]).css('color', '').css('background-color', '')
+				}
+			})
+		}
 		if (valid) {
 			Swal.fire({
 				title: "Perhatian <?= $user['role'] . " " . $user['name'] . " !" ?>",
@@ -100,6 +104,15 @@
 			}).then((res)=>{
 				if (res.isConfirmed) {
 					var formData = new FormData()
+					if (status.val() == 'desain') {
+						formData.append('id', id_pekerjaan.val())
+						formData.append('status', status.val())
+						id_detail_pekerjaan.each((index, item) => {
+							formData.append('id_detail[]', id_detail_pekerjaan[index].value)
+							formData.append('deskripsi[]', noteIsian[index].value)
+						})
+						saveChange(formData)
+					}
 					if (status.val() == 'cutting') {
 						formData.append('id', id_pekerjaan.val())
 						formData.append('status', status.val())
