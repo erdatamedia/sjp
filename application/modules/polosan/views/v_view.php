@@ -10,7 +10,7 @@
 		<div class="card-header align-items-center" id="card-header">
 			<div class="btn-group btn-group-sm my-2 my-sm-0">
 				<a href="<?= base_url($module) ?>" class="btn btn-light btn-sm"><i class="bi bi-chevron-left"></i></a>
-				<?php if ($x['status'] == $status && $x['status'] != 'approved-shipping'): ?>
+				<?php if ($x['status'] == $status && $x['status'] != 'approved-shipping' && $x['status'] != 'waiting'): ?>
 							<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChange(this)">
 							<span class="indicator-label">
 								Completed
@@ -18,6 +18,12 @@
 							<span class="indicator-progress">
 								Please Wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
 							</span>
+						</button>
+					<?php endif ?>
+					<?php if ($x['status'] == 'waiting' && $user['id_role'] == 1): ?>
+						<button type="button" class="btn btn-warning btn-sm indicator" onclick="statusChange(this)">
+							<span class="indicator-label">Desain</span>
+							<span class="indicator-progress">Please Wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 						</button>
 					<?php endif ?>
 					<?php if ($x['status'] == 'approved-shipping' && $user['id_role'] == 7):  ?>
