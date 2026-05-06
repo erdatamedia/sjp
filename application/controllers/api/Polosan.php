@@ -249,6 +249,23 @@ class Polosan extends RestController
 		}
 
 		$result = true;
+		if ($status == 'desain') {
+			$result = true;
+			$this->delNotifikasi($id);
+			$this->updateStatusPekerjaan($id, $status);
+			$pekerjaan = $this->getPekerjaan($id);
+			$act = $pekerjaan['id_pesanan'] . "-" . "Polosan" . "-". "Desain";
+			$this->pusher($act, 3);
+			$this->pusherActivity();
+			$this->pusherProses();
+			$this->saveNotification(3, $id, $pekerjaan['id_user'], $status);
+			$id_detail_pekerjaan = $this->input->post('id_detail') ?? [];
+			$deskripsi           = $this->input->post('deskripsi') ?? [];
+			foreach ($id_detail_pekerjaan as $key => $value) {
+				$update['deskripsi'] = $deskripsi[$key] ?? '';
+				$this->db->where('id', $value)->update('d_pekerjaan', $update);
+			}
+		}
 		if ($status == 'cutting') {
 			$result = true;
 			$this->delNotifikasi($id);
