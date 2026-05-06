@@ -19,7 +19,7 @@ class Digital extends RestController
 	}
 
 	private static $ROLE_VIEW_STATUS = [
-		1  => ['waiting', 'cutting', 'printing', 'packing', 'done'],
+		1  => null,
 		4  => ['desain', 'printing', 'packing'],
 		9  => ['desain', 'printing', 'packing'],
 		6  => ['packing', 'done'],
