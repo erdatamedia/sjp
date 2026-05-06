@@ -139,7 +139,7 @@ class Polosan extends MY_Controller
 		}
 
 		$data['tgl_pengiriman']  = $this->input->post('tgl_pengiriman');
-		$data['status']          = 'desain';
+		$data['status']          = 'waiting';
 		$data['jenis_pekerjaan'] = 'polosan';
 		$data['created_at']      = date('Y-m-d');
 
@@ -162,7 +162,7 @@ class Polosan extends MY_Controller
 				$this->saveDetail($detail, $id_detail);
 			}
 			$this->notifikasi($id);
-			$this->saveNotification(3, $id, $data['id_user'], 'desain');
+			$this->saveNotification(1, $id, $data['id_user'], 'waiting');
 			$this->pusher($id_pesanan . '-Polosan-Baru', 1);
 			redirect(base_url('polosan'));
 		}

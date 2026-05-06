@@ -12,7 +12,12 @@
 			<div class="btn-group btn-group-sm my-2 my-sm-0">
 				<a href="<?= base_url($module) ?>" class="btn btn-light btn-sm"><i class="bi bi-chevron-left"></i></a>
 
-				<?php if ($x['status'] == $status && $x['status'] != 'approved-shipping' && $x['status'] != 'waiting'):  ?>
+				<?php
+				$can_complete = ($x['status'] == $status && $x['status'] != 'approved-shipping' && $x['status'] != 'waiting');
+				// Role 4 (Printing) juga bisa complete saat status packing
+				if ($user['id_role'] == 4 && $x['status'] == 'packing') $can_complete = true;
+				?>
+				<?php if ($can_complete):  ?>
 						<button type="button" class="btn btn-primary btn-sm indicator" onclick="statusChange(this)">
 							<span class="indicator-label">
 								Completed

@@ -30,6 +30,7 @@ class Customdesain extends RestController
 	];
 
 	private static $ROLE_CHANGE_STATUS = [
+		'waiting'           => [1, 8],
 		'desain'            => [1, 3, 11, 8],
 		'cutting'           => [1, 3, 8],
 		'printing'          => [4, 5, 8],

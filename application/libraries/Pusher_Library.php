@@ -25,6 +25,11 @@ class Pusher_library {
     }
 
     public function trigger($channel, $event, $data) {
-        return $this->pusher->trigger($channel, $event, $data);
+        try {
+            return $this->pusher->trigger($channel, $event, $data);
+        } catch (Exception $e) {
+            log_message('error', 'Pusher error: ' . $e->getMessage());
+            return false;
+        }
     }
 }
