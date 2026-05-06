@@ -81,8 +81,8 @@ if (!function_exists('get_role_filter_tabs')) {
             1  => [ // Kabag Produksi
                 ['status'=>'',        'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
                 ['status'=>'waiting', 'label'=>'Menunggu Material/Alat','class'=>'filter-tab-waiting'],
+                ['status'=>'desain',  'label'=>'Desain',                'class'=>'filter-tab-desain'],
                 ['status'=>'cutting', 'label'=>'Cutting',               'class'=>'filter-tab-cutting'],
-                ['status'=>'printing','label'=>'Printing',              'class'=>'filter-tab-printing'],
                 ['status'=>'packing', 'label'=>'Finishing',             'class'=>'filter-tab-packing'],
                 ['status'=>'done',    'label'=>'Selesai',               'class'=>'filter-tab-done'],
             ],
