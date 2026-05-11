@@ -78,7 +78,7 @@ if (!function_exists('get_role_filter_tabs')) {
                 ['status'=>'desain', 'label'=>'Mau Dikerjakan','class'=>'filter-tab-desain'],
                 ['status'=>'cutting','label'=>'Sudah Selesai', 'class'=>'filter-tab-cutting'],
             ],
-            1  => $module === 'customdesain' ? [
+            1  => ($module === 'customdesain' || $module === 'digital') ? [
                 ['status'=>'',         'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
                 ['status'=>'waiting',  'label'=>'Menunggu Material/Alat','class'=>'filter-tab-waiting'],
                 ['status'=>'desain',   'label'=>'Desain',                'class'=>'filter-tab-desain'],
