@@ -50,7 +50,7 @@
 <?php if (can_see_filter($user['id_role'])): ?>
 <div class="mb-5 mt-5 mb-sm-0 text-end">
 <?php
-$_tabs = get_role_filter_tabs($user['id_role']);
+$_tabs = get_role_filter_tabs($user['id_role'], 'digital');
 if ($_tabs !== null && is_simplified_filter_role($user['id_role'])):
     foreach ($_tabs as $_tab):
     $tab_icons = [

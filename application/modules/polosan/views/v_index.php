@@ -108,7 +108,7 @@
 <?php if (can_see_filter($user['id_role'])): ?>
 <div class="d-flex gap-2 flex-wrap px-5 py-4">
 <?php
-$_tabs = get_role_filter_tabs($user['id_role']);
+$_tabs = get_role_filter_tabs($user['id_role'], 'polosan');
 if ($_tabs !== null && is_simplified_filter_role($user['id_role'])):
     foreach ($_tabs as $_tab): ?>
     <button class="btn filter-tab <?= $_tab['class'] ?>">

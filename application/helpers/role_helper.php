@@ -46,7 +46,7 @@ if (!function_exists('is_simplified_filter_role')) {
 }
 
 if (!function_exists('get_role_filter_tabs')) {
-    function get_role_filter_tabs($id_role) {
+    function get_role_filter_tabs($id_role, $module = '') {
         $map = [
             5  => [ // Cutting
                 ['status'=>'',       'label'=>'Semua Proses',           'class'=>'filter-tab-all'],
@@ -78,7 +78,15 @@ if (!function_exists('get_role_filter_tabs')) {
                 ['status'=>'desain', 'label'=>'Mau Dikerjakan','class'=>'filter-tab-desain'],
                 ['status'=>'cutting','label'=>'Sudah Selesai', 'class'=>'filter-tab-cutting'],
             ],
-            1  => [ // Kabag Produksi
+            1  => $module === 'customdesain' ? [
+                ['status'=>'',         'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
+                ['status'=>'waiting',  'label'=>'Menunggu Material/Alat','class'=>'filter-tab-waiting'],
+                ['status'=>'desain',   'label'=>'Desain',                'class'=>'filter-tab-desain'],
+                ['status'=>'cutting',  'label'=>'Cutting',               'class'=>'filter-tab-cutting'],
+                ['status'=>'printing', 'label'=>'Printing',              'class'=>'filter-tab-printing'],
+                ['status'=>'packing',  'label'=>'Finishing',             'class'=>'filter-tab-packing'],
+                ['status'=>'done',     'label'=>'Selesai',               'class'=>'filter-tab-done'],
+            ] : [
                 ['status'=>'',        'label'=>'Semua Proses',          'class'=>'filter-tab-all'],
                 ['status'=>'waiting', 'label'=>'Menunggu Material/Alat','class'=>'filter-tab-waiting'],
                 ['status'=>'desain',  'label'=>'Desain',                'class'=>'filter-tab-desain'],
