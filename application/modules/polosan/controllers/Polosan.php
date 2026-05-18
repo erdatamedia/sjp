@@ -107,18 +107,7 @@ class Polosan extends MY_Controller
 			return redirect(base_url('polosan'));
 		}
 
-		// ── Validasi Delivery Date: minimal H+1 ──
-		if (!$id) {
-			$tgl = $this->input->post('tgl_pengiriman');
-			if ($tgl && $tgl <= date('Y-m-d')) {
-				$this->session->set_flashdata('error',
-					'Delivery Date minimal ' . date('d/m/Y', strtotime('+1 day')) . '.');
-				redirect(current_url());
-				return;
-			}
-		}
-
-		$pekerjaan_lama = $this->getPekerjaan($id);
+$pekerjaan_lama = $this->getPekerjaan($id);
 		$pekerjaan = $pekerjaan_lama;
 		// Due date dihitung otomatis — tidak lagi dari input form
 		unset($data['due_date']);

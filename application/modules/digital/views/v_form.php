@@ -3,15 +3,7 @@
         height: auto;
     }
 
-    /* Hari ini & sebelumnya ditampilkan merah di kalender flatpickr */
-    .flatpickr-day.flatpickr-disabled,
-    .flatpickr-day.flatpickr-disabled:hover {
-        color: #dc3545 !important;
-        background: rgba(220,53,69,.07) !important;
-        text-decoration: line-through;
-        opacity: 1 !important;
-        cursor: not-allowed;
-    }
+
 </style>
 <form class="container-fluid" id="content_container" action="<?= base_url('digital/save') ?>" method="post">
     <div class="card mb-5">
