@@ -109,25 +109,10 @@ class Polosan extends MY_Controller
 
 $pekerjaan_lama = $this->getPekerjaan($id);
 		$pekerjaan = $pekerjaan_lama;
-		// Due date dihitung otomatis — tidak lagi dari input form
-		unset($data['due_date']);
-		$tgl_pengiriman = $this->input->post('tgl_pengiriman');
-
-		if ($jenis_order == 'repeat-order') {
-			$data['durasi']   = 6;
-			$data['due_date'] = $this->estimasiWaktu(6, $pekerjaan ? $pekerjaan['created_at'] : null);
-		}
-		if ($jenis_order == 'new-order') {
-			$data['durasi']   = 14;
-			$data['due_date'] = $this->estimasiWaktu(14, $pekerjaan ? $pekerjaan['created_at'] : null);
-		}
-		if ($jenis_order == 'lainnya') {
-			// Tanpa field due_date di form, gunakan tgl_pengiriman sebagai acuan
-			$data['durasi']   = $this->hitung_selisih_tanggal(date('Y-m-d'), $tgl_pengiriman);
-			$data['due_date'] = $tgl_pengiriman;
-		}
-
-		$data['tgl_pengiriman']  = $this->input->post('tgl_pengiriman');
+		$tgl_pengiriman          = $this->input->post('tgl_pengiriman');
+		$data['tgl_pengiriman']  = $tgl_pengiriman;
+		$data['due_date']        = $tgl_pengiriman;
+		$data['durasi']          = $this->hitung_selisih_tanggal(date('Y-m-d'), $tgl_pengiriman);
 		$data['status']          = 'waiting';
 		$data['jenis_pekerjaan'] = 'polosan';
 		$data['created_at']      = date('Y-m-d');

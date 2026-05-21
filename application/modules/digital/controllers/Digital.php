@@ -48,22 +48,10 @@ class Digital extends MY_Controller
 		    return redirect(base_url('digital'));
 		}
 		$pekerjaan = $this->getPekerjaan($id);
-		if ($jenis_order != 'lainnya') {
-			unset($data['due_date']);
-		}
-		if ($jenis_order == 'repeat-order') {
-			$repeat = 6;
-			$data['durasi'] = $repeat;
-			$data['due_date'] = $this->estimasiWaktu($repeat, $pekerjaan? $pekerjaan['created_at'] : null);
-		} else if ($jenis_order == 'new-order') {
-			$new = 14;
-			$data['durasi'] = $new;
-			$data['due_date'] = $this->estimasiWaktu($new,  $pekerjaan? $pekerjaan['created_at'] : null);
-		} else if ($jenis_order == 'lainnya') {
-			$data['durasi'] = $this->hitung_selisih_tanggal(date('Y-m-d'), $data['due_date']);
-			$data['due_date'] = $this->input->post('due_date');
-		}
-		$data['tgl_pengiriman'] = $this->input->post('tgl_pengiriman');
+		$tgl_pengiriman         = $this->input->post('tgl_pengiriman');
+		$data['tgl_pengiriman'] = $tgl_pengiriman;
+		$data['due_date']       = $tgl_pengiriman;
+		$data['durasi']         = $this->hitung_selisih_tanggal(date('Y-m-d'), $tgl_pengiriman);
 		$data['status'] = 'desain';
 		$data['created_at'] =  date('Y-m-d');
 		if ($id) {
