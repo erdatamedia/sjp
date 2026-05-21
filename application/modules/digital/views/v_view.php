@@ -53,7 +53,7 @@
 						</button>
 					<?php endif ?>
 
-					<?php if ($user['id_role'] == 9): ?>
+					<?php if ($user['id_role'] == 9 || $user['id_role'] == 10): ?>
 						<a target="_blank" href="<?= base_url('prints/spkDigital/'). $x['id'] ?>" class="btn btn-light">SPK</a>
 						
 					<?php endif ?>
