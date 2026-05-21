@@ -30,9 +30,9 @@
 							</span>
 						</button>
 					<?php endif ?>
-					<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [6, 9, 10])): ?>
+					<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [6, 10])): ?>
 						<button type="button" class="btn btn-primary btn-sm indicator"
-							onclick="<?= in_array($user['id_role'], [9, 10]) ? 'statusChangeShipping(this)' : 'statusChange(this)' ?>">
+							onclick="<?= $user['id_role'] == 10 ? 'statusChangeShipping(this)' : 'statusChange(this)' ?>">
 							<span class="indicator-label">
 								Completed
 							</span>
@@ -258,7 +258,7 @@
 													$disabled = '';
 												} elseif ($x['status'] == 'printing' && $user['id_role'] == 9){
 													$disabled = '';
-												}elseif($x['status'] == 'packing' && in_array($user['id_role'], [9, 10])) {
+												}elseif($x['status'] == 'packing' && $user['id_role'] == 10) {
 													$disabled = '';
 												}elseif ($x['status'] == 'approved-shipping' && $user['id_role'] == 7) {
 													$disabled = '';
@@ -274,7 +274,7 @@
 										<div class="fw-bolder"><?= $line['qty'] ?></div>
 									</td>
 									<td>
-										<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [9, 10])): ?>
+										<?php if ($x['status'] == 'packing' && $user['id_role'] == 10): ?>
 										<label class="form-label">Isi/Lembar</label>
 											<input type="number" name="qty_object" class="form-control">
 										<?php elseif($line['qty_object']): ?>
@@ -283,7 +283,7 @@
 										<?php endif ?>
 									</td>
 									<td>
-										<?php if ($x['status'] == 'packing' && in_array($user['id_role'], [9, 10])): ?>
+										<?php if ($x['status'] == 'packing' && $user['id_role'] == 10): ?>
 										<label class="form-label">Reject/Lembar</label>
 											<input type="number" name="reject_object" class="form-control">
 										<?php elseif($line['reject_object']): ?>
