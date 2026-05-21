@@ -33,7 +33,7 @@ class Digital extends RestController
 		'desain'            => [9, 8],
 		'printing'          => [9, 8],
 		'packing'           => [6, 9, 10, 8],
-		'done'              => [6, 10, 8],
+		'done'              => [6, 9, 10, 8],
 		'approved-shipping' => [7, 8],
 		'approved-customer' => [7, 8],
 	];
