@@ -57,7 +57,7 @@
 						<a target="_blank" href="<?= base_url('prints/spkDigital/'). $x['id'] ?>" class="btn btn-light">SPK</a>
 						
 					<?php endif ?>
-					<?php if ($user['id_role'] == 10 && ($x['status'] == 'approved-shipping' || $x['status'] == 'approved-customer')): ?>
+					<?php if ($user['id_role'] == 10 && in_array($x['status'], ['done', 'approved', 'approved-shipping', 'approved-customer'])): ?>
 					    <a target="_blank" href="<?= base_url('prints/designDigital/') . $x['id'] ?>" class="btn btn-light">Draf Label</a>
 					<?php endif; ?>
 			</div>
